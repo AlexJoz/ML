@@ -77,7 +77,8 @@ Theta1_grad = (1/m) * delta2(2:end,:) * a1;
 Theta2_grad = (1/m) * delta3 * a2;
 
 %add some regularization for bp
-
+Theta1_grad(:,2:end)=Theta1_grad(:,2:end)+(lambda/m).*Theta1(:,2:end);
+Theta2_grad(:,2:end)=Theta2_grad(:,2:end)+(lambda/m).*Theta2(:,2:end);
 
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
