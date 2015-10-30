@@ -26,8 +26,27 @@ sigma = 0.3;
 
 
 
+%% joz 
+i = 0;
+inc = [ 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0];
+inc2 = [ 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0];
+pError = flintmax;
+for jC = inc
+    for jSigma = inc2
+        model = svmTrain(X, y, jC, @(x1, x2) gaussianKernel(x1, x2, jSigma));
+        predictions = svmPredict(model, Xval);
+        error = mean(double(predictions ~= yval));
+        i = i + 1;
+        if (error < pError)
+            pError = error;
+            %out = [pError, jC, jSigma];
+            C = jC;
+            sigma = jSigma;
+        end
+    end
+end
 
-
+fprintf ('C = %f, sigma = %f, error = %f', C, sigma, pError);
 
 % =========================================================================
 
