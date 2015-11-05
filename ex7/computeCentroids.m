@@ -25,13 +25,14 @@ centroids = zeros(K, n);
 %
 % Note: You can use a for-loop over the centroids to compute this.
 %
+%size(idx) [300x1]
+%size(centroids) [3x2]
 
-
-
-
-
-
-
+for i = 1:K
+    % find indexes with same cluster number in idx 
+    % and compute mean wrt them
+    centroids(i,:) = mean(X(find(idx==i),:));
+end
 
 % =============================================================
 
