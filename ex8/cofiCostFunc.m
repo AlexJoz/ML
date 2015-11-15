@@ -41,21 +41,20 @@ Theta_grad = zeros(size(Theta));
 %
 
 
-
+%Cost Func
 J=(X*Theta'-Y).^2; %5x4
 J = sum(sum(J(R == 1)))/2
 
-
-
-
-
+%Grad
 S = (X*Theta'-Y); %5x4
 S = S.*R; %5x4
 X_grad = S * Theta; 
 Theta_grad= S' * X;
 
-
-
+%Add regularization
+Rt = sum(sum(Theta.^2))*lambda/2;
+Rx = sum(sum(X.^2))*lambda/2;
+J = J+Rt+Rx;
 
 % =============================================================
 
