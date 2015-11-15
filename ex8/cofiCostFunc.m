@@ -49,7 +49,10 @@ J = sum(sum(J(R == 1)))/2
 
 
 
-
+S = (X*Theta'-Y); %5x4
+S = S.*R; %5x4
+X_grad = S * Theta; 
+Theta_grad= S' * X;
 
 
 
