@@ -56,6 +56,10 @@ Rt = sum(sum(Theta.^2))*lambda/2;
 Rx = sum(sum(X.^2))*lambda/2;
 J = J+Rt+Rx;
 
+Rxg = lambda*X;
+Rtg = lambda*Theta;
+X_grad = X_grad+Rxg;
+Theta_grad = Theta_grad+Rtg;
 % =============================================================
 
 grad = [X_grad(:); Theta_grad(:)];
